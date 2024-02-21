@@ -37,7 +37,7 @@ resource "aws_securityhub_member" "members" {
   depends_on = [aws_securityhub_account.main]
   account_id = var.member_accounts[count.index].account_id
   email      = !local.is_delegated_admin_account ? var.member_accounts[count.index].email : null
-  invite     = true
+  invite     = !local.is_delegated_admin_account ? true : false
 }
 
 resource "aws_securityhub_invite_accepter" "invitee" {
