@@ -295,12 +295,6 @@ variable "config_s3_bucket_retention_days" {
   default     = 0
 }
 
-variable "config_tuning_enabled" {
-  description = "Tune AWS Config frequency & retention using Python local provisioner."
-  type        = bool
-  default     = false
-}
-
 variable "config_retention_days" {
   description = "AWS Config retention in days. 0 disables setting retention."
   type        = number

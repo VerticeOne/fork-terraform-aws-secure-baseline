@@ -44,6 +44,12 @@ variable "delivery_channel_name" {
   default     = "default"
 }
 
+variable "config_retention_days" {
+  description = "AWS Config retention in days. 0 disables setting retention."
+  type        = number
+  default     = 0
+}
+
 variable "continuous_recording" {
   description = "Enable CONTINUOUS recording (as opposed to DAILY)."
   type        = bool
