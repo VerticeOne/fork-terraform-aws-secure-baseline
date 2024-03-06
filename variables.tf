@@ -301,14 +301,8 @@ variable "config_retention_days" {
   default     = 0
 }
 
-variable "config_continuous_recording" {
-  description = "Enable CONTINUOUS Config recorder mode (as opposed to DAILY)"
-  type        = bool
-  default     = true
-}
-
-variable "config_continuous_recording_regions" {
-  description = "Limit CONTINUOUS Config recording to these regions (ALL regions if empty)"
+variable "config_daily_recording_regions" {
+  description = "Enable DAILY Config recording mode in these regions"
   type        = list(string)
   default     = []
 }
