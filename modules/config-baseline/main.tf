@@ -39,7 +39,6 @@ resource "aws_config_configuration_recorder" "recorder" {
   name     = var.recorder_name
   role_arn = var.iam_role_arn
 
-
   recording_group {
     all_supported                 = length(var.limit_resource_types) == 0
     include_global_resource_types = length(var.limit_resource_types) == 0 ? var.include_global_resource_types : false
@@ -50,7 +49,7 @@ resource "aws_config_configuration_recorder" "recorder" {
   }
 
   recording_mode {
-    recording_frequency = var.continuous_recording ? "CONTINUOUS" : "DAILY"
+    recording_frequency = var.daily_recording ? "DAILY" : "CONTINUOUS"
   }
 }
 

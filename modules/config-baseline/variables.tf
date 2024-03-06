@@ -50,10 +50,10 @@ variable "config_retention_days" {
   default     = 0
 }
 
-variable "continuous_recording" {
-  description = "Enable CONTINUOUS recording (as opposed to DAILY)."
+variable "daily_recording" {
+  description = "Enable DAILY recording (as opposed to CONTINUOUS)."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "limit_resource_types" {

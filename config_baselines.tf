@@ -116,7 +116,7 @@ module "config_baseline_ap-northeast-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-northeast-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "ap-northeast-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -140,7 +140,7 @@ module "config_baseline_ap-northeast-2" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-2"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-northeast-2") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "ap-northeast-2")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -164,7 +164,7 @@ module "config_baseline_ap-northeast-3" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-3"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-northeast-3") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "ap-northeast-3")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -188,7 +188,7 @@ module "config_baseline_ap-south-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-south-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-south-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "ap-south-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -212,7 +212,7 @@ module "config_baseline_ap-southeast-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-southeast-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "ap-southeast-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -236,7 +236,7 @@ module "config_baseline_ap-southeast-2" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-2"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ap-southeast-2") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "ap-southeast-2")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -260,7 +260,7 @@ module "config_baseline_ca-central-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ca-central-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "ca-central-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "ca-central-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -284,7 +284,7 @@ module "config_baseline_eu-central-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-central-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-central-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "eu-central-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -308,7 +308,7 @@ module "config_baseline_eu-north-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-north-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-north-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "eu-north-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -332,7 +332,7 @@ module "config_baseline_eu-west-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-west-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "eu-west-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -356,7 +356,7 @@ module "config_baseline_eu-west-2" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-2"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-west-2") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "eu-west-2")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -380,7 +380,7 @@ module "config_baseline_eu-west-3" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-3"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "eu-west-3") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "eu-west-3")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -404,7 +404,7 @@ module "config_baseline_sa-east-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "sa-east-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "sa-east-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "sa-east-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -428,7 +428,7 @@ module "config_baseline_us-east-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "us-east-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "us-east-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -452,7 +452,7 @@ module "config_baseline_us-east-2" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-2"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "us-east-2") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "us-east-2")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -476,7 +476,7 @@ module "config_baseline_us-west-1" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-1"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "us-west-1") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "us-west-1")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
@@ -500,7 +500,7 @@ module "config_baseline_us-west-2" {
   sns_topic_kms_master_key_id   = var.config_sns_topic_kms_master_key_id
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-2"
   config_retention_days         = var.config_retention_days
-  continuous_recording          = var.config_continuous_recording ? contains(var.config_continuous_recording_regions, "us-west-2") : false
+  daily_recording               = contains(var.config_daily_recording_regions, "us-west-2")
   limit_resource_types          = var.config_limit_resource_types
 
   tags = var.tags
