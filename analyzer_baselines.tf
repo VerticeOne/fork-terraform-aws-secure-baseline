@@ -1,5 +1,5 @@
 locals {
-  is_analyzer_enabled = var.analyzer_baseline_enabled && (local.is_individual_account || local.is_master_account)
+  is_analyzer_enabled = var.analyzer_baseline_enabled && (local.is_individual_account || local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id)
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ module "analyzer_baseline_ap-northeast-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "ap-northeast-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -30,7 +30,7 @@ module "analyzer_baseline_ap-northeast-2" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "ap-northeast-2" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -45,7 +45,7 @@ module "analyzer_baseline_ap-south-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "ap-south-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -60,7 +60,7 @@ module "analyzer_baseline_ap-northeast-3" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "ap-northeast-3" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -75,7 +75,7 @@ module "analyzer_baseline_ap-southeast-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "ap-southeast-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -90,7 +90,7 @@ module "analyzer_baseline_ap-southeast-2" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "ap-southeast-2" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -105,7 +105,7 @@ module "analyzer_baseline_ca-central-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "ca-central-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -120,7 +120,7 @@ module "analyzer_baseline_eu-central-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "eu-central-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -135,7 +135,7 @@ module "analyzer_baseline_eu-north-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "eu-north-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -150,7 +150,7 @@ module "analyzer_baseline_eu-west-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "eu-west-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -165,7 +165,7 @@ module "analyzer_baseline_eu-west-2" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "eu-west-2" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -180,7 +180,7 @@ module "analyzer_baseline_eu-west-3" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "eu-west-3" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -195,7 +195,7 @@ module "analyzer_baseline_sa-east-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "sa-east-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -210,7 +210,7 @@ module "analyzer_baseline_us-east-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "us-east-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -225,7 +225,7 @@ module "analyzer_baseline_us-east-2" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "us-east-2" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -240,7 +240,7 @@ module "analyzer_baseline_us-west-1" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "us-west-1" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
@@ -255,7 +255,7 @@ module "analyzer_baseline_us-west-2" {
   }
 
   analyzer_name              = var.analyzer_name
-  is_organization            = local.is_master_account
+  is_organization            = local.is_master_account || data.aws_caller_identity.current.account_id == var.analyzer_delegated_admin_account_id
   delegated_admin_account_id = var.region == "us-west-2" ? var.analyzer_delegated_admin_account_id : ""
 
   tags = var.tags
