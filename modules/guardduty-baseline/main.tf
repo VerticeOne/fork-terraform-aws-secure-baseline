@@ -8,14 +8,14 @@ locals {
   is_guardduty_master_account = var.master_account_id == "" || (var.master_account_id == var.delegated_admin_account_id && local.is_delegated_admin_account)
   is_worker_account           = var.master_account_id != "" && !local.is_delegated_admin_account && !local.is_org_root_account
 
-  member_accounts_map = {for member in var.member_accounts : member.account_id => {"email" = member.email}}
+  member_accounts_map = { for member in var.member_accounts : member.account_id => { "email" = member.email } }
   member_account_features_map = merge([
     for member in var.member_accounts : {
-      for feature in var.detector_features:
-        "${member.account_id}_${feature}" => {
-          "member_account_id" = member.account_id
-          "feature" = feature
-        }
+      for feature in var.detector_features :
+      "${member.account_id}_${feature}" => {
+        "member_account_id" = member.account_id
+        "feature"           = feature
+      }
     }
   ]...)
 }
@@ -37,14 +37,14 @@ resource "aws_guardduty_member" "members" {
   # count = local.is_guardduty_master_account ? length(var.member_accounts) : 0
   for_each = local.is_guardduty_master_account ? local.member_accounts_map : {}
 
-  detector_id                = aws_guardduty_detector.default.id
-  invite                     = true
+  detector_id = aws_guardduty_detector.default.id
+  invite      = true
   # account_id                 = var.member_accounts[count.index].account_id
   account_id                 = each.key
   disable_email_notification = var.disable_email_notification
   # email                      = var.member_accounts[count.index].email
-  email                      = each.value.email
-  invitation_message         = var.invitation_message
+  email              = each.value.email
+  invitation_message = var.invitation_message
 
   lifecycle {
     ignore_changes = [

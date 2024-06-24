@@ -118,13 +118,13 @@ This module is composed of several submodules and each of which can be used inde
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.3 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.39 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.3 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.39 |
 
 ## Inputs
 
@@ -141,6 +141,7 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_alarm_sns_topic_name"></a> [alarm\_sns\_topic\_name](#input\_alarm\_sns\_topic\_name) | The name of the SNS Topic which will be notified when any alarm is performed. | `string` | no |
 | <a name="input_allow_users_to_change_password"></a> [allow\_users\_to\_change\_password](#input\_allow\_users\_to\_change\_password) | Whether to allow users to change their own password. | `bool` | no |
 | <a name="input_analyzer_baseline_enabled"></a> [analyzer\_baseline\_enabled](#input\_analyzer\_baseline\_enabled) | Boolean whether analyzer-baseline is enabled. | `bool` | no |
+| <a name="input_analyzer_delegated_admin_account_id"></a> [analyzer\_delegated\_admin\_account\_id](#input\_analyzer\_delegated\_admin\_account\_id) | AWS account ID withing AWS Organization that should become delegated administrator of Access Analyzer. This overrides the global `master_account_id` for Access Analyzer. | `string` | no |
 | <a name="input_analyzer_name"></a> [analyzer\_name](#input\_analyzer\_name) | The name for the IAM Access Analyzer resource to be created. | `string` | no |
 | <a name="input_audit_log_bucket_access_logs_name"></a> [audit\_log\_bucket\_access\_logs\_name](#input\_audit\_log\_bucket\_access\_logs\_name) | The name of the S3 bucket to store various audit logs. | `string` | no |
 | <a name="input_audit_log_bucket_custom_policy_json"></a> [audit\_log\_bucket\_custom\_policy\_json](#input\_audit\_log\_bucket\_custom\_policy\_json) | Override policy for the audit log bucket. Allows addition of extra policies. | `string` | no |
@@ -166,21 +167,27 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_config_aggregator_name"></a> [config\_aggregator\_name](#input\_config\_aggregator\_name) | The name of the organizational AWS Config Configuration Aggregator. | `string` | no |
 | <a name="input_config_aggregator_name_prefix"></a> [config\_aggregator\_name\_prefix](#input\_config\_aggregator\_name\_prefix) | The prefix of the name for the IAM role attached to the organizational AWS Config Configuration Aggregator. | `string` | no |
 | <a name="input_config_baseline_enabled"></a> [config\_baseline\_enabled](#input\_config\_baseline\_enabled) | Boolean whether config-baseline is enabled. | `bool` | no |
+| <a name="input_config_daily_recording_regions"></a> [config\_daily\_recording\_regions](#input\_config\_daily\_recording\_regions) | Enable DAILY Config recording mode in these regions | `list(string)` | no |
 | <a name="input_config_delivery_frequency"></a> [config\_delivery\_frequency](#input\_config\_delivery\_frequency) | The frequency which AWS Config sends a snapshot into the S3 bucket. | `string` | no |
 | <a name="input_config_global_resources_all_regions"></a> [config\_global\_resources\_all\_regions](#input\_config\_global\_resources\_all\_regions) | Record global resources in all regions. If false, only default region will record global resources. | `bool` | no |
 | <a name="input_config_iam_role_name"></a> [config\_iam\_role\_name](#input\_config\_iam\_role\_name) | The name of the IAM Role which AWS Config will use. | `string` | no |
 | <a name="input_config_iam_role_policy_name"></a> [config\_iam\_role\_policy\_name](#input\_config\_iam\_role\_policy\_name) | The name of the IAM Role Policy which AWS Config will use. | `string` | no |
+| <a name="input_config_limit_resource_types"></a> [config\_limit\_resource\_types](#input\_config\_limit\_resource\_types) | Only record changes for listed resource types. Records all if empty. | `list(string)` | no |
+| <a name="input_config_retention_days"></a> [config\_retention\_days](#input\_config\_retention\_days) | AWS Config retention in days. 0 disables setting retention. | `number` | no |
 | <a name="input_config_s3_bucket_key_prefix"></a> [config\_s3\_bucket\_key\_prefix](#input\_config\_s3\_bucket\_key\_prefix) | The prefix used when writing AWS Config snapshots into the S3 bucket. | `string` | no |
+| <a name="input_config_s3_bucket_retention_days"></a> [config\_s3\_bucket\_retention\_days](#input\_config\_s3\_bucket\_retention\_days) | Config logs retention in S3 bucket in days. 0 disables the lifecycle rule. | `number` | no |
 | <a name="input_config_sns_topic_kms_master_key_id"></a> [config\_sns\_topic\_kms\_master\_key\_id](#input\_config\_sns\_topic\_kms\_master\_key\_id) | To enable SNS Topic encryption enter value with the ID of a custom master KMS key that is used for encryption | `string` | no |
 | <a name="input_config_sns_topic_name"></a> [config\_sns\_topic\_name](#input\_config\_sns\_topic\_name) | The name of the SNS Topic to be used to notify configuration changes. | `string` | no |
 | <a name="input_console_signin_failures_enabled"></a> [console\_signin\_failures\_enabled](#input\_console\_signin\_failures\_enabled) | The boolean flag whether the console\_signin\_failures alarm is enabled or not. No resources are created when set to false. | `bool` | no |
 | <a name="input_create_password_policy"></a> [create\_password\_policy](#input\_create\_password\_policy) | Define if the password policy should be created. | `bool` | no |
 | <a name="input_create_support_role"></a> [create\_support\_role](#input\_create\_support\_role) | Define if the support role should be created. | `bool` | no |
 | <a name="input_disable_or_delete_cmk_enabled"></a> [disable\_or\_delete\_cmk\_enabled](#input\_disable\_or\_delete\_cmk\_enabled) | The boolean flag whether the disable\_or\_delete\_cmk alarm is enabled or not. No resources are created when set to false. | `bool` | no |
+| <a name="input_guardduty_delegated_admin_account_id"></a> [guardduty\_delegated\_admin\_account\_id](#input\_guardduty\_delegated\_admin\_account\_id) | AWS account ID withing AWS Organization that should become delegated administrator of GuardDuty. This overrides the global `master_account_id` for GuardDuty and enforces AWS Organization-based account management instead of invite-based. | `string` | no |
 | <a name="input_guardduty_disable_email_notification"></a> [guardduty\_disable\_email\_notification](#input\_guardduty\_disable\_email\_notification) | Boolean whether an email notification is sent to the accounts. | `bool` | no |
 | <a name="input_guardduty_enabled"></a> [guardduty\_enabled](#input\_guardduty\_enabled) | Boolean whether the guardduty-baseline module is enabled or disabled | `bool` | no |
 | <a name="input_guardduty_finding_publishing_frequency"></a> [guardduty\_finding\_publishing\_frequency](#input\_guardduty\_finding\_publishing\_frequency) | Specifies the frequency of notifications sent for subsequent finding occurrences. | `string` | no |
 | <a name="input_guardduty_invitation_message"></a> [guardduty\_invitation\_message](#input\_guardduty\_invitation\_message) | Message for invitation. | `string` | no |
+| <a name="input_guardduty_member_accounts"></a> [guardduty\_member\_accounts](#input\_guardduty\_member\_accounts) | A list of IDs and emails of AWS accounts which associated as member accounts for GuardDuty. This overrides `member_accounts` for GuardDuty. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | no |
 | <a name="input_iam_baseline_enabled"></a> [iam\_baseline\_enabled](#input\_iam\_baseline\_enabled) | Boolean whether iam-baseline is enabled. | `bool` | no |
 | <a name="input_iam_changes_enabled"></a> [iam\_changes\_enabled](#input\_iam\_changes\_enabled) | The boolean flag whether the iam\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | no |
 | <a name="input_master_account_id"></a> [master\_account\_id](#input\_master\_account\_id) | The ID of the master AWS account to which the current AWS account is associated. Required if `account_type` is `member`. | `string` | no |
@@ -207,11 +214,13 @@ This module is composed of several submodules and each of which can be used inde
 | <a name="input_s3_ignore_public_acls"></a> [s3\_ignore\_public\_acls](#input\_s3\_ignore\_public\_acls) | Whether Amazon S3 should ignore public ACLs for buckets in this account. Defaults to true. | `bool` | no |
 | <a name="input_s3_restrict_public_buckets"></a> [s3\_restrict\_public\_buckets](#input\_s3\_restrict\_public\_buckets) | Whether Amazon S3 should restrict public bucket policies for buckets in this account. Defaults to true. | `bool` | no |
 | <a name="input_security_group_changes_enabled"></a> [security\_group\_changes\_enabled](#input\_security\_group\_changes\_enabled) | The boolean flag whether the security\_group\_changes alarm is enabled or not. No resources are created when set to false. | `bool` | no |
+| <a name="input_securityhub_delegated_admin_account_id"></a> [securityhub\_delegated\_admin\_account\_id](#input\_securityhub\_delegated\_admin\_account\_id) | AWS account ID withing AWS Organization that should become delegated administrator of SecurityHub. This overrides the global `master_account_id` for SecurityHub and enforces AWS Organization-based account management instead of invite-based. | `string` | no |
 | <a name="input_securityhub_enable_aws_foundational_standard"></a> [securityhub\_enable\_aws\_foundational\_standard](#input\_securityhub\_enable\_aws\_foundational\_standard) | Boolean whether AWS Foundations standard is enabled. | `bool` | no |
 | <a name="input_securityhub_enable_cis_standard"></a> [securityhub\_enable\_cis\_standard](#input\_securityhub\_enable\_cis\_standard) | Boolean whether CIS standard is enabled. | `bool` | no |
 | <a name="input_securityhub_enable_pci_dss_standard"></a> [securityhub\_enable\_pci\_dss\_standard](#input\_securityhub\_enable\_pci\_dss\_standard) | Boolean whether PCI DSS standard is enabled. | `bool` | no |
 | <a name="input_securityhub_enable_product_arns"></a> [securityhub\_enable\_product\_arns](#input\_securityhub\_enable\_product\_arns) | List of Security Hub product ARNs, `<REGION>` will be replaced. See https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-partner-providers.html for list. | `list(string)` | no |
 | <a name="input_securityhub_enabled"></a> [securityhub\_enabled](#input\_securityhub\_enabled) | Boolean whether the securityhub-baseline module is enabled or disabled | `bool` | no |
+| <a name="input_securityhub_member_accounts"></a> [securityhub\_member\_accounts](#input\_securityhub\_member\_accounts) | A list of IDs and emails of AWS accounts which associated as member accounts for Security Hub. This overrides `member_accounts` for Security Hub. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | no |
 | <a name="input_support_iam_role_name"></a> [support\_iam\_role\_name](#input\_support\_iam\_role\_name) | The name of the the support role. | `string` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map(string)` | no |
 | <a name="input_target_regions"></a> [target\_regions](#input\_target\_regions) | A list of regions to set up with this module. | `list(string)` | no |
