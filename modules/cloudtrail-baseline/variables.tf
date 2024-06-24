@@ -82,7 +82,7 @@ variable "s3_key_prefix" {
 variable "insight_selector_enabled" {
   description = "Enable CloudTrail Insight Selector"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "is_organization_trail" {
