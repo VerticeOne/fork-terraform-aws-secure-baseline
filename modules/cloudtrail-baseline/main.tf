@@ -306,8 +306,11 @@ resource "aws_cloudtrail" "global" {
     }
   }
 
-  insight_selector {
-    insight_type = "ApiCallRateInsight"
+  dynamic "insight_selector" {
+    for_each = var.insight_selector_enabled ? [1] : []
+    content {
+      insight_type = "ApiCallRateInsight"
+    }
   }
 
   tags = var.tags

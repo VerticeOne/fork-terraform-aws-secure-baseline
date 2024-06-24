@@ -79,6 +79,12 @@ variable "s3_key_prefix" {
   default     = ""
 }
 
+variable "insight_selector_enabled" {
+  description = "Enable CloudTrail Insight Selector"
+  type        = bool
+  default     = true
+}
+
 variable "is_organization_trail" {
   description = "Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account."
   type        = bool
