@@ -34,17 +34,14 @@ resource "aws_guardduty_organization_admin_account" "guardduty_baseline_delegate
 }
 
 resource "aws_guardduty_member" "members" {
-  # count = local.is_guardduty_master_account ? length(var.member_accounts) : 0
   for_each = local.is_guardduty_master_account ? local.member_accounts_map : {}
 
-  detector_id = aws_guardduty_detector.default.id
-  invite      = true
-  # account_id                 = var.member_accounts[count.index].account_id
+  detector_id                = aws_guardduty_detector.default.id
+  invite                     = true
   account_id                 = each.key
   disable_email_notification = var.disable_email_notification
-  # email                      = var.member_accounts[count.index].email
-  email              = each.value.email
-  invitation_message = var.invitation_message
+  email                      = each.value.email
+  invitation_message         = var.invitation_message
 
   lifecycle {
     ignore_changes = [
