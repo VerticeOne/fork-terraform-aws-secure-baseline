@@ -401,6 +401,12 @@ variable "cloudtrail_name" {
   default     = "cloudtrail-multi-region"
 }
 
+variable "cloudtrail_insight_selector_enabled" {
+  description = "Specifies whether CloudTrail Insights event logging is enabled"
+  type        = bool
+  default     = true
+}
+
 variable "cloudtrail_sns_topic_enabled" {
   description = "Specifies whether the trail is delivered to a SNS topic."
   type        = bool

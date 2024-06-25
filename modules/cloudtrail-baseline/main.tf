@@ -307,7 +307,7 @@ resource "aws_cloudtrail" "global" {
   }
 
   dynamic "insight_selector" {
-    for_each = var.insight_selector_enabled ? [1] : []
+    for_each = var.cloudtrail_insight_selector_enabled ? [1] : []
     content {
       insight_type = "ApiCallRateInsight"
     }
