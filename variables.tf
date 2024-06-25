@@ -714,3 +714,13 @@ variable "analyzer_delegated_admin_account_id" {
   type        = string
   default     = ""
 }
+
+variable "analyzer_archive_rules" {
+  description = "Specifies archive rules for the Access Analyzer."
+  type = map(list(object({
+    criteria   = string
+    comparator = string
+    values     = any
+  })))
+  default = {}
+}

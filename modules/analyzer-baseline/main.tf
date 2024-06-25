@@ -15,3 +15,46 @@ resource "aws_organizations_delegated_administrator" "accessanalyzer_analyzer_ba
   account_id        = var.delegated_admin_account_id
   service_principal = "access-analyzer.amazonaws.com"
 }
+
+resource "aws_accessanalyzer_archive_rule" "aa_archive_rule" {
+  for_each = var.archive_rules
+
+  analyzer_name = aws_accessanalyzer_analyzer.default.analyzer_name
+  rule_name     = each.key
+
+  dynamic "filter" {
+    for_each = { for record in each.value : "${record.comparator}-${record.criteria}" => record if record.comparator == "contains" }
+
+    content {
+      criteria = filter.value.criteria
+      contains = filter.value.values
+    }
+  }
+
+  dynamic "filter" {
+    for_each = { for record in each.value : "${record.comparator}-${record.criteria}" => record if record.comparator == "eq" }
+
+    content {
+      criteria = filter.value.criteria
+      eq       = filter.value.values
+    }
+  }
+
+  dynamic "filter" {
+    for_each = { for record in each.value : "${record.comparator}-${record.criteria}" => record if record.comparator == "neq" }
+
+    content {
+      criteria = filter.value.criteria
+      neq      = filter.value.values
+    }
+  }
+
+  dynamic "filter" {
+    for_each = { for record in each.value : "${record.comparator}-${record.criteria}" => record if record.comparator == "exists" }
+
+    content {
+      criteria = filter.value.criteria
+      exists   = filter.value.values
+    }
+  }
+}

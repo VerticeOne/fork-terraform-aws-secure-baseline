@@ -16,6 +16,16 @@ variable "delegated_admin_account_id" {
   default     = ""
 }
 
+variable "archive_rules" {
+  description = "Specifies archive rules for the Access Analyzer."
+  type = map(list(object({
+    criteria   = string
+    comparator = string
+    values     = any
+  })))
+  default = {}
+}
+
 variable "tags" {
   description = "Specifies object tags key and value. This applies to all resources created by this module."
   type        = map(string)
