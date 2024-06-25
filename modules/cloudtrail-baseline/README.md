@@ -24,6 +24,7 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | <a name="input_region"></a> [region](#input\_region) | The AWS region in which CloudTrail is set up. | `string` | yes |
 | <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | The name of the S3 bucket which will store configuration snapshots. | `string` | yes |
 | <a name="input_cloudtrail_depends_on"></a> [cloudtrail\_depends\_on](#input\_cloudtrail\_depends\_on) | External resources which should be set up before CloudTrail. | `list(any)` | no |
+| <a name="input_cloudtrail_insight_selector_enabled"></a> [cloudtrail\_insight\_selector\_enabled](#input\_cloudtrail\_insight\_selector\_enabled) | Specifies whether CloudTrail Insights event logging is enabled | `bool` | no |
 | <a name="input_cloudtrail_name"></a> [cloudtrail\_name](#input\_cloudtrail\_name) | The name of the trail. | `string` | no |
 | <a name="input_cloudtrail_sns_topic_enabled"></a> [cloudtrail\_sns\_topic\_enabled](#input\_cloudtrail\_sns\_topic\_enabled) | Specifies whether the trail is delivered to a SNS topic. | `bool` | no |
 | <a name="input_cloudtrail_sns_topic_name"></a> [cloudtrail\_sns\_topic\_name](#input\_cloudtrail\_sns\_topic\_name) | The SNS topic linked to the CloudTrail | `string` | no |
@@ -33,7 +34,6 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | <a name="input_dynamodb_event_logging_tables"></a> [dynamodb\_event\_logging\_tables](#input\_dynamodb\_event\_logging\_tables) | The list of DynamoDB table ARNs on which to enable event logging. | `list(string)` | no |
 | <a name="input_iam_role_name"></a> [iam\_role\_name](#input\_iam\_role\_name) | The name of the IAM Role to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | no |
 | <a name="input_iam_role_policy_name"></a> [iam\_role\_policy\_name](#input\_iam\_role\_policy\_name) | The name of the IAM Role Policy to be used by CloudTrail to delivery logs to CloudWatch Logs group. | `string` | no |
-| <a name="input_insight_selector_enabled"></a> [insight\_selector\_enabled](#input\_insight\_selector\_enabled) | Enable CloudTrail Insight Selector | `bool` | no |
 | <a name="input_is_organization_trail"></a> [is\_organization\_trail](#input\_is\_organization\_trail) | Specifies whether the trail is an AWS Organizations trail. Organization trails log events for the master account and all member accounts. Can only be created in the organization master account. | `bool` | no |
 | <a name="input_key_deletion_window_in_days"></a> [key\_deletion\_window\_in\_days](#input\_key\_deletion\_window\_in\_days) | Duration in days after which the key is deleted after destruction of the resource, must be between 7 and 30 days. Defaults to 30 days. | `number` | no |
 | <a name="input_lambda_invocation_logging_lambdas"></a> [lambda\_invocation\_logging\_lambdas](#input\_lambda\_invocation\_logging\_lambdas) | The list of lambda ARNs on which to enable invocation logging. | `list(string)` | no |

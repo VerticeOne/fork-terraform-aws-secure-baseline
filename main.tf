@@ -69,25 +69,26 @@ module "cloudtrail_baseline" {
   count  = local.is_cloudtrail_enabled ? 1 : 0
   source = "./modules/cloudtrail-baseline"
 
-  aws_account_id                    = var.aws_account_id
-  cloudtrail_depends_on             = [aws_s3_bucket_policy.audit_log]
-  cloudtrail_name                   = var.cloudtrail_name
-  cloudtrail_sns_topic_enabled      = var.cloudtrail_sns_topic_enabled
-  cloudtrail_sns_topic_name         = var.cloudtrail_sns_topic_name
-  cloudwatch_logs_enabled           = var.cloudtrail_cloudwatch_logs_enabled
-  cloudwatch_logs_group_name        = var.cloudtrail_cloudwatch_logs_group_name
-  cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
-  iam_role_name                     = var.cloudtrail_iam_role_name
-  iam_role_policy_name              = var.cloudtrail_iam_role_policy_name
-  permissions_boundary_arn          = var.permissions_boundary_arn
-  key_deletion_window_in_days       = var.cloudtrail_key_deletion_window_in_days
-  region                            = var.region
-  s3_bucket_name                    = local.audit_log_bucket_id
-  s3_key_prefix                     = var.cloudtrail_s3_key_prefix
-  s3_object_level_logging_buckets   = var.cloudtrail_s3_object_level_logging_buckets
-  dynamodb_event_logging_tables     = var.cloudtrail_dynamodb_event_logging_tables
-  lambda_invocation_logging_lambdas = var.cloudtrail_lambda_invocation_logging_lambdas
-  is_organization_trail             = local.is_organization_trail
+  aws_account_id                      = var.aws_account_id
+  cloudtrail_depends_on               = [aws_s3_bucket_policy.audit_log]
+  cloudtrail_name                     = var.cloudtrail_name
+  cloudtrail_insight_selector_enabled = var.cloudtrail_insight_selector_enabled
+  cloudtrail_sns_topic_enabled        = var.cloudtrail_sns_topic_enabled
+  cloudtrail_sns_topic_name           = var.cloudtrail_sns_topic_name
+  cloudwatch_logs_enabled             = var.cloudtrail_cloudwatch_logs_enabled
+  cloudwatch_logs_group_name          = var.cloudtrail_cloudwatch_logs_group_name
+  cloudwatch_logs_retention_in_days   = var.cloudwatch_logs_retention_in_days
+  iam_role_name                       = var.cloudtrail_iam_role_name
+  iam_role_policy_name                = var.cloudtrail_iam_role_policy_name
+  permissions_boundary_arn            = var.permissions_boundary_arn
+  key_deletion_window_in_days         = var.cloudtrail_key_deletion_window_in_days
+  region                              = var.region
+  s3_bucket_name                      = local.audit_log_bucket_id
+  s3_key_prefix                       = var.cloudtrail_s3_key_prefix
+  s3_object_level_logging_buckets     = var.cloudtrail_s3_object_level_logging_buckets
+  dynamodb_event_logging_tables       = var.cloudtrail_dynamodb_event_logging_tables
+  lambda_invocation_logging_lambdas   = var.cloudtrail_lambda_invocation_logging_lambdas
+  is_organization_trail               = local.is_organization_trail
 
   tags = var.tags
 }

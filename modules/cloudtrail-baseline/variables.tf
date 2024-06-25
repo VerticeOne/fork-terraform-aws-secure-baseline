@@ -9,6 +9,12 @@ variable "cloudtrail_name" {
   default     = "cloudtrail-multi-region"
 }
 
+variable "cloudtrail_insight_selector_enabled" {
+  description = "Specifies whether CloudTrail Insights event logging is enabled"
+  type        = bool
+  default     = true
+}
+
 variable "cloudtrail_sns_topic_enabled" {
   description = "Specifies whether the trail is delivered to a SNS topic."
   type        = bool
@@ -77,12 +83,6 @@ variable "s3_key_prefix" {
   description = "The prefix for the specified S3 bucket."
   type        = string
   default     = ""
-}
-
-variable "insight_selector_enabled" {
-  description = "Enable CloudTrail Insight Selector"
-  type        = bool
-  default     = true
 }
 
 variable "is_organization_trail" {
