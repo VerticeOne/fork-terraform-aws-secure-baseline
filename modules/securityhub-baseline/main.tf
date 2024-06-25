@@ -9,6 +9,8 @@ locals {
   is_delegated_admin_account    = data.aws_caller_identity.current.account_id == var.delegated_admin_account_id
   is_securityhub_master_account = var.master_account_id == "" || (var.master_account_id == var.delegated_admin_account_id && local.is_delegated_admin_account)
   is_worker_account             = var.master_account_id != "" && !local.is_delegated_admin_account && !local.is_org_root_account
+
+  member_accounts_map = { for member in var.member_accounts : member.account_id => { "email" = member.email } }
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -32,11 +34,11 @@ resource "aws_securityhub_finding_aggregator" "main" {
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_securityhub_member" "members" {
-  count = local.is_securityhub_master_account ? length(var.member_accounts) : 0
+  for_each = local.is_securityhub_master_account ? local.member_accounts_map : {}
 
   depends_on = [aws_securityhub_account.main]
-  account_id = var.member_accounts[count.index].account_id
-  email      = !local.is_delegated_admin_account ? var.member_accounts[count.index].email : null
+  account_id = each.key
+  email      = each.value.email
   invite     = !local.is_delegated_admin_account ? true : false
 
   lifecycle {
