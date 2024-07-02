@@ -724,3 +724,9 @@ variable "analyzer_archive_rules" {
   })))
   default = {}
 }
+
+variable "analyzer_global_findings_region" {
+  description = "(Optional) Region for which AccessAnalyzer will report findings for global resources (like IAM roles). If specified, suppression rules will be created for all other regions EXCEPT this one to deduplicate the findings. Default value is `null`, so findings for global resources are reported in every region."
+  type        = string
+  default     = null
+}
