@@ -11,7 +11,7 @@ variable "is_organization" {
 }
 
 variable "delegated_admin_account_id" {
-  description = "AWS account ID withing AWS Organization that should become delegated administrator of Access Analyzer."
+  description = "AWS account ID within AWS Organization that should become delegated administrator of Access Analyzer."
   type        = string
   default     = ""
 }

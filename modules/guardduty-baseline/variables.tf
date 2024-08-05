@@ -29,7 +29,7 @@ variable "master_account_id" {
 }
 
 variable "member_accounts" {
-  description = "A list of IDs and emails of AWS accounts which associated as member accounts."
+  description = "A list of IDs and emails of AWS accounts to be associated as member accounts."
   type = list(object({
     account_id = string
     email      = string
@@ -38,7 +38,7 @@ variable "member_accounts" {
 }
 
 variable "delegated_admin_account_id" {
-  description = "AWS account ID withing AWS Organization that should become delegated administrator of GuardDuty. This overrides the global `master_account_id` for GuardDuty and enforces AWS Organization-based account management instead of invite-based."
+  description = "AWS account ID within AWS Organization that should become delegated administrator of GuardDuty. This overrides the global `master_account_id` for GuardDuty and enforces AWS Organization-based account management instead of invite-based."
   type        = string
   default     = ""
 }
