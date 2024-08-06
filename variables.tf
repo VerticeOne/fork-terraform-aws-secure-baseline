@@ -25,7 +25,7 @@ variable "master_account_id" {
 }
 
 variable "member_accounts" {
-  description = "A list of IDs and emails of AWS accounts which associated as member accounts."
+  description = "A list of IDs and emails of AWS accounts to be associated as member accounts."
   type = list(object({
     account_id = string
     email      = string
@@ -596,7 +596,7 @@ variable "guardduty_invitation_message" {
 }
 
 variable "guardduty_member_accounts" {
-  description = "A list of IDs and emails of AWS accounts which associated as member accounts for GuardDuty. This overrides `member_accounts` for GuardDuty."
+  description = "A list of IDs and emails of AWS accounts to be associated as member accounts for GuardDuty. This overrides `member_accounts` for GuardDuty."
   type = list(object({
     account_id = string
     email      = string
@@ -605,7 +605,43 @@ variable "guardduty_member_accounts" {
 }
 
 variable "guardduty_delegated_admin_account_id" {
-  description = "AWS account ID withing AWS Organization that should become delegated administrator of GuardDuty. This overrides the global `master_account_id` for GuardDuty and enforces AWS Organization-based account management instead of invite-based."
+  description = "AWS account ID within AWS Organization that should become delegated administrator of GuardDuty. This overrides the global `master_account_id` for GuardDuty and enforces AWS Organization-based account management instead of invite-based."
+  type        = string
+  default     = ""
+}
+
+# --------------------------------------------------------------------------------------------------
+# Variables for inspector-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+variable "inspector_enabled" {
+  description = "Boolean whether the inspector-baseline module is enabled or disabled"
+  type        = bool
+  default     = true
+}
+
+variable "inspector_resource_types" {
+  description = "Specifies the types of resources to be scanned with Inspector."
+  type        = list(string)
+  default = [
+    "EC2",
+    "ECR",
+    "LAMBDA",
+    "LAMBDA_CODE",
+  ]
+}
+
+variable "inspector_member_accounts" {
+  description = "A list of IDs and emails of AWS accounts to be associated as member accounts for Inspector. This overrides `member_accounts` for Inspector."
+  type = list(object({
+    account_id = string
+    email      = string
+  }))
+  default = []
+}
+
+variable "inspector_delegated_admin_account_id" {
+  description = "AWS account ID within AWS Organization that should become delegated administrator of Inspector. This overrides the global `master_account_id` for Inspector."
   type        = string
   default     = ""
 }
@@ -679,7 +715,7 @@ variable "securityhub_enable_product_arns" {
 }
 
 variable "securityhub_member_accounts" {
-  description = "A list of IDs and emails of AWS accounts which associated as member accounts for Security Hub. This overrides `member_accounts` for Security Hub."
+  description = "A list of IDs and emails of AWS accounts to be associated as member accounts for Security Hub. This overrides `member_accounts` for Security Hub."
   type = list(object({
     account_id = string
     email      = string
@@ -688,7 +724,7 @@ variable "securityhub_member_accounts" {
 }
 
 variable "securityhub_delegated_admin_account_id" {
-  description = "AWS account ID withing AWS Organization that should become delegated administrator of SecurityHub. This overrides the global `master_account_id` for SecurityHub and enforces AWS Organization-based account management instead of invite-based."
+  description = "AWS account ID within AWS Organization that should become delegated administrator of SecurityHub. This overrides the global `master_account_id` for SecurityHub and enforces AWS Organization-based account management instead of invite-based."
   type        = string
   default     = ""
 }
@@ -710,7 +746,7 @@ variable "analyzer_name" {
 }
 
 variable "analyzer_delegated_admin_account_id" {
-  description = "AWS account ID withing AWS Organization that should become delegated administrator of Access Analyzer. This overrides the global `master_account_id` for Access Analyzer."
+  description = "AWS account ID within AWS Organization that should become delegated administrator of Access Analyzer. This overrides the global `master_account_id` for Access Analyzer."
   type        = string
   default     = ""
 }
