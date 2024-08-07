@@ -108,6 +108,20 @@ module "analyzer_baseline_ap-southeast-2" {
   tags = var.tags
 }
 
+module "analyzer_baseline_ap-southeast-3" {
+  count  = local.is_analyzer_enabled && contains(var.target_regions, "ap-southeast-3") ? 1 : 0
+  source = "./modules/analyzer-baseline"
+
+  providers = {
+    aws = aws.ap-southeast-3
+  }
+
+  analyzer_name   = var.analyzer_name
+  is_organization = local.is_master_account
+
+  tags = var.tags
+}
+
 module "analyzer_baseline_ca-central-1" {
   count  = local.is_analyzer_enabled && contains(var.target_regions, "ca-central-1") ? 1 : 0
   source = "./modules/analyzer-baseline"
@@ -206,6 +220,20 @@ module "analyzer_baseline_eu-west-3" {
   delegated_admin_account_id = var.region == "eu-west-3" ? var.analyzer_delegated_admin_account_id : ""
   archive_rules              = var.analyzer_archive_rules
   global_findings_region     = var.analyzer_global_findings_region
+
+  tags = var.tags
+}
+
+module "analyzer_baseline_me-south-1" {
+  count  = local.is_analyzer_enabled && contains(var.target_regions, "me-south-1") ? 1 : 0
+  source = "./modules/analyzer-baseline"
+
+  providers = {
+    aws = aws.me-south-1
+  }
+
+  analyzer_name   = var.analyzer_name
+  is_organization = local.is_master_account
 
   tags = var.tags
 }
