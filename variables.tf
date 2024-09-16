@@ -729,6 +729,33 @@ variable "securityhub_delegated_admin_account_id" {
   default     = ""
 }
 
+variable "securityhub_configuration_policies" {
+  description = "Configuration policy definitions for Security Hub (master account only)"
+  type = map(object({
+    description       = string,
+    enabled           = bool,
+    standard_arns     = list(string),
+    disabled_controls = optional(list(string), []),
+    control_custom_parameters = optional(list(object({
+      control = string,
+      parameters = list(object({
+        name     = string,
+        custom   = optional(bool, true),
+        int_list = optional(list(number), []),
+      })),
+    })), []),
+  }))
+  default = {}
+}
+variable "securityhub_policy_assignments" {
+  description = "Configuration policy definitions for Security Hub (master account only)"
+  type = map(object({
+    target_id   = string,
+    policy_name = string,
+  }))
+  default = {}
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for analyzer-baseline module.
 # --------------------------------------------------------------------------------------------------

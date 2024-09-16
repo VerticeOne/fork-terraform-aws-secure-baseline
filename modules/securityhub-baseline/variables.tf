@@ -48,3 +48,31 @@ variable "delegated_admin_account_id" {
   type        = string
   default     = ""
 }
+
+variable "configuration_policies" {
+  description = "Configuration policy definitions for Security Hub (master account only)"
+  type = map(object({
+    description       = string,
+    enabled           = bool,
+    standard_arns     = list(string),
+    disabled_controls = optional(list(string), []),
+    control_custom_parameters = optional(list(object({
+      control = string,
+      parameters = list(object({
+        name     = string,
+        custom   = optional(bool, true),
+        int_list = optional(list(number), []),
+      })),
+    })), []),
+  }))
+  default = {}
+}
+
+variable "policy_assignments" {
+  description = "Configuration policy definitions for Security Hub (master account only)"
+  type = map(object({
+    target_id   = string,
+    policy_name = string,
+  }))
+  default = {}
+}

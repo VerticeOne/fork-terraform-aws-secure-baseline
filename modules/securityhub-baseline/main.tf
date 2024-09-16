@@ -75,6 +75,67 @@ resource "aws_securityhub_organization_admin_account" "securityhub_baseline_dele
 }
 
 # --------------------------------------------------------------------------------------------------
+# Delegated admin configuration & policies
+# --------------------------------------------------------------------------------------------------
+
+resource "aws_securityhub_organization_configuration" "this" {
+  count = var.aggregate_findings && local.is_securityhub_master_account ? 1 : 0
+
+  auto_enable           = false
+  auto_enable_standards = "NONE"
+  organization_configuration {
+    configuration_type = "CENTRAL"
+  }
+}
+
+resource "aws_securityhub_configuration_policy" "this" {
+  for_each = var.aggregate_findings && local.is_securityhub_master_account ? var.configuration_policies : {}
+
+  name        = each.key
+  description = each.value.description
+
+  configuration_policy {
+    service_enabled       = each.value.enabled
+    enabled_standard_arns = each.value.standard_arns
+    dynamic "security_controls_configuration" {
+      for_each = each.value.enabled ? [1] : []
+
+      content {
+        disabled_control_identifiers = each.value.disabled_controls
+        dynamic "security_control_custom_parameter" {
+          for_each = each.value.control_custom_parameters
+          content {
+            security_control_id = security_control_custom_parameter.value.control
+            dynamic "parameter" {
+              for_each = security_control_custom_parameter.value.parameters
+              content {
+                name       = parameter.value.name
+                value_type = parameter.value.custom ? "CUSTOM" : "DEFAULT"
+                dynamic "int_list" {
+                  for_each = parameter.value.custom ? [1] : []
+                  content {
+                    value = parameter.value.int_list
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  depends_on = [aws_securityhub_organization_configuration.this]
+}
+
+resource "aws_securityhub_configuration_policy_association" "this" {
+  for_each = var.aggregate_findings && local.is_securityhub_master_account ? var.policy_assignments : {}
+
+  target_id = each.value.target_id
+  policy_id = aws_securityhub_configuration_policy.this[each.value.policy_name].id
+}
+
+# --------------------------------------------------------------------------------------------------
 # Subscribe standards
 # --------------------------------------------------------------------------------------------------
 
