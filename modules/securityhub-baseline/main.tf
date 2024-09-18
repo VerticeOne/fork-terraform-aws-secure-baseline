@@ -79,7 +79,7 @@ resource "aws_securityhub_organization_admin_account" "securityhub_baseline_dele
 # --------------------------------------------------------------------------------------------------
 
 resource "aws_securityhub_organization_configuration" "this" {
-  count = var.aggregate_findings && local.is_securityhub_master_account ? 1 : 0
+  count = var.aggregate_findings && local.is_delegated_admin_account ? 1 : 0
 
   auto_enable           = false
   auto_enable_standards = "NONE"
@@ -89,7 +89,7 @@ resource "aws_securityhub_organization_configuration" "this" {
 }
 
 resource "aws_securityhub_configuration_policy" "this" {
-  for_each = var.aggregate_findings && local.is_securityhub_master_account ? var.configuration_policies : {}
+  for_each = var.aggregate_findings && local.is_delegated_admin_account ? var.configuration_policies : {}
 
   name        = each.key
   description = each.value.description
@@ -129,7 +129,7 @@ resource "aws_securityhub_configuration_policy" "this" {
 }
 
 resource "aws_securityhub_configuration_policy_association" "this" {
-  for_each = var.aggregate_findings && local.is_securityhub_master_account ? var.policy_assignments : {}
+  for_each = var.aggregate_findings && local.is_delegated_admin_account ? var.policy_assignments : {}
 
   target_id = each.value.target_id
   policy_id = aws_securityhub_configuration_policy.this[each.value.policy_name].id
