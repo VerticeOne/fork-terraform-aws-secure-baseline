@@ -730,7 +730,7 @@ variable "securityhub_delegated_admin_account_id" {
 }
 
 variable "securityhub_configuration_policies" {
-  description = "Configuration policy definitions for Security Hub (master account only)"
+  description = "Configuration policy definitions for Security Hub. Note: this only works if delegated admin account is used."
   type = map(object({
     description       = string,
     enabled           = bool,
@@ -748,7 +748,7 @@ variable "securityhub_configuration_policies" {
   default = {}
 }
 variable "securityhub_policy_assignments" {
-  description = "Configuration policy definitions for Security Hub (master account only)"
+  description = "Assignments of Security Hub configuration policies to target accounts or OUs. Note: this only works if delegated admin account is used."
   type = map(object({
     target_id   = string,
     policy_name = string,
