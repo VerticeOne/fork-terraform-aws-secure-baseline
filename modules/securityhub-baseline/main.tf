@@ -102,6 +102,7 @@ resource "aws_securityhub_configuration_policy" "this" {
 
       content {
         disabled_control_identifiers = each.value.disabled_controls
+        enabled_control_identifiers  = each.value.enabled_controls
         dynamic "security_control_custom_parameter" {
           for_each = each.value.control_custom_parameters
           content {
@@ -111,11 +112,37 @@ resource "aws_securityhub_configuration_policy" "this" {
               content {
                 name       = parameter.value.name
                 value_type = parameter.value.custom ? "CUSTOM" : "DEFAULT"
+                dynamic "bool" {
+                  for_each = parameter.value.bool != null ? [1] : []
+                  content { value = parameter.value.bool }
+                }
+                dynamic "double" {
+                  for_each = parameter.value.double != null ? [1] : []
+                  content { value = parameter.value.double }
+                }
+                dynamic "enum" {
+                  for_each = parameter.value.enum != null ? [1] : []
+                  content { value = parameter.value.enum }
+                }
+                dynamic "enum_list" {
+                  for_each = try([parameter.value.enum_list[0]], [])
+                  content { value = parameter.value.enum_list }
+                }
+                dynamic "int" {
+                  for_each = parameter.value.int != null ? [1] : []
+                  content { value = parameter.value.int }
+                }
                 dynamic "int_list" {
-                  for_each = parameter.value.custom ? [1] : []
-                  content {
-                    value = parameter.value.int_list
-                  }
+                  for_each = try([parameter.value.int_list[0]], [])
+                  content { value = parameter.value.int_list }
+                }
+                dynamic "string" {
+                  for_each = parameter.value.string != null ? [1] : []
+                  content { value = parameter.value.string }
+                }
+                dynamic "string_list" {
+                  for_each = try([parameter.value.string_list[0]], [])
+                  content { value = parameter.value.string_list }
                 }
               }
             }
