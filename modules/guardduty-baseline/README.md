@@ -27,6 +27,7 @@ Enable GuardDuty in all regions.
 | <a name="input_invitation_message"></a> [invitation\_message](#input\_invitation\_message) | Message for invitation. | `string` | no |
 | <a name="input_master_account_id"></a> [master\_account\_id](#input\_master\_account\_id) | AWS account ID for master account. | `string` | no |
 | <a name="input_member_accounts"></a> [member\_accounts](#input\_member\_accounts) | A list of IDs and emails of AWS accounts to be associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | no |
+| <a name="input_org_configuration"></a> [org\_configuration](#input\_org\_configuration) | Shared organization configuration. Only applies for delegated administrator account. | <pre>object({<br>    auto_enable_organization_members = optional(string, "NONE"),<br>    auto_enable_s3_logs              = optional(bool, false)<br>    enable_k8s_audit_logs            = optional(bool, false)<br>    auto_enable_ebs_volumes_scan     = optional(bool, false)<br>  })</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map(string)` | no |
 
 ## Outputs

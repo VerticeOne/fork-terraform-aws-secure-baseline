@@ -50,3 +50,14 @@ variable "tags" {
     "Terraform" = "true"
   }
 }
+
+variable "org_configuration" {
+  description = "Shared organization configuration. Only applies for delegated administrator account."
+  type = object({
+    auto_enable_organization_members = optional(string, "NONE"),
+    auto_enable_s3_logs              = optional(bool, false)
+    enable_k8s_audit_logs            = optional(bool, false)
+    auto_enable_ebs_volumes_scan     = optional(bool, false)
+  })
+  default = {}
+}

@@ -64,3 +64,27 @@ resource "aws_guardduty_detector_feature" "default_detector_features" {
   name        = each.value.feature
   status      = "ENABLED"
 }
+
+resource "aws_guardduty_organization_configuration" "this" {
+  auto_enable_organization_members = var.org_configuration.auto_enable_organization_members
+
+  detector_id = aws_guardduty_detector.default.id
+
+  datasources {
+    s3_logs {
+      auto_enable = var.org_configuration.auto_enable_s3_logs
+    }
+    kubernetes {
+      audit_logs {
+        enable = var.org_configuration.enable_k8s_audit_logs
+      }
+    }
+    malware_protection {
+      scan_ec2_instance_with_findings {
+        ebs_volumes {
+          auto_enable = var.org_configuration.auto_enable_ebs_volumes_scan
+        }
+      }
+    }
+  }
+}
