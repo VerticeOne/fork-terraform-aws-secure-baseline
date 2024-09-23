@@ -66,6 +66,8 @@ resource "aws_guardduty_detector_feature" "default_detector_features" {
 }
 
 resource "aws_guardduty_organization_configuration" "this" {
+  count = local.is_guardduty_master_account && local.is_delegated_admin_account ? 1 : 0
+
   auto_enable_organization_members = var.org_configuration.auto_enable_organization_members
 
   detector_id = aws_guardduty_detector.default.id
@@ -87,4 +89,8 @@ resource "aws_guardduty_organization_configuration" "this" {
       }
     }
   }
+}
+moved {
+  from = aws_guardduty_organization_configuration.this
+  to   = aws_guardduty_organization_configuration.this[0]
 }
