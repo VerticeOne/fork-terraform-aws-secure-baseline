@@ -22,7 +22,7 @@ Enable Inspector in all regions.
 |------|-------------|------|:--------:|
 | <a name="input_delegated_admin_account_id"></a> [delegated\_admin\_account\_id](#input\_delegated\_admin\_account\_id) | AWS account ID within AWS Organization that should become delegated administrator of Inspector. This overrides the global `master_account_id` for Inspector and enforces AWS Organization-based account management instead of invite-based. | `string` | no |
 | <a name="input_master_account_id"></a> [master\_account\_id](#input\_master\_account\_id) | AWS account ID for master account. | `string` | no |
-| <a name="input_member_accounts"></a> [member\_accounts](#input\_member\_accounts) | A list of IDs and emails of AWS accounts to be associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | no |
+| <a name="input_member_accounts"></a> [member\_accounts](#input\_member\_accounts) | A list of IDs and emails of AWS accounts to be associated as member accounts. | <pre>list(object({<br/>    account_id = string<br/>    email      = string<br/>  }))</pre> | no |
 | <a name="input_resource_types"></a> [resource\_types](#input\_resource\_types) | Specifies the types of resources to be scanned with Inspector. | `list(string)` | no |
 
 ## Outputs
