@@ -343,6 +343,12 @@ variable "config_limit_resource_types" {
   default     = []
 }
 
+variable "config_non_main_exclude_resource_types" {
+  description = "Global Resource types that will be excluded from config_limit_resource_types in a non-main regions"
+  type        = list(string)
+  default     = ["AWS::IAM::Policy", "AWS::IAM::Role"]
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for cloudtrail-baseline module.
 # --------------------------------------------------------------------------------------------------
