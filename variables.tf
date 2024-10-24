@@ -343,7 +343,7 @@ variable "config_limit_resource_types" {
   default     = []
 }
 
-variable "config_exclude_resource_types" {
+variable "config_non_main_exclude_resource_types" {
   description = "Resource types that will be excluded from config_limit_resource_types in a non-main regions"
   type        = list(string)
   default     = ["AWS::IAM::Policy", "AWS::IAM::Role"]
