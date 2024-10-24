@@ -429,7 +429,7 @@ module "config_baseline_us-east-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "us-east-1")
-  limit_resource_types          = var.region == "us-east-1" ? var.config_limit_resource_types : setsubtract(var.config_limit_resource_types, var.config_non_main_exclude_resource_types)
+  limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "us-east-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
 
