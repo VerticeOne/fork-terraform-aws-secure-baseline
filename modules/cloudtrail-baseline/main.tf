@@ -67,7 +67,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
   policy_id = "Key policy created by CloudTrail"
 
   statement {
-    sid = "Enable IAM User Permissions"
+    sid = "Enable IAM user permissions"
 
     principals {
       type = "AWS"
@@ -87,6 +87,11 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     }
     actions   = ["kms:GenerateDataKey*"]
     resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      variable = "aws:SourceArn"
+      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/${var.cloudtrail_name}"]
+    }
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
@@ -166,7 +171,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = ["arn:aws:cloudtrail:*:$${var.aws_account_id}:trail/*"]
+      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
     }
   }
 
@@ -179,9 +184,9 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     actions   = ["kms:Decrypt"]
     resources = ["*"]
     condition {
-      test     = "StringEquals"
+      test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = [aws_cloudtrail.global.arn]
+      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
     }
     condition {
       test     = "StringEquals"
