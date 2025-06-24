@@ -284,7 +284,7 @@ resource "aws_cloudtrail" "global" {
   kms_key_id                    = aws_kms_key.cloudtrail.arn
   s3_bucket_name                = var.s3_bucket_name
   s3_key_prefix                 = var.s3_key_prefix
-  sns_topic_name                = var.cloudtrail_sns_topic_enabled ? aws_sns_topic.cloudtrail-sns-topic[0].arn : null
+  sns_topic_name                = var.cloudtrail_sns_topic_enabled ? aws_sns_topic.cloudtrail-sns-topic[0].name : null
 
   event_selector {
     read_write_type           = "All"
