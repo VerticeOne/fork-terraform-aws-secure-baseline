@@ -1,3 +1,7 @@
+locals {
+  config_sns_topic_arn = aws_sns_topic.config.arn
+}
+
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
@@ -13,14 +17,14 @@ resource "aws_sns_topic" "config" {
 }
 
 resource "aws_sns_topic_policy" "config" {
-  arn    = aws_sns_topic.config.arn
+  arn    = local.config_sns_topic_arn
   policy = data.aws_iam_policy_document.config-sns-policy.json
 }
 
 data "aws_iam_policy_document" "config-sns-policy" {
   statement {
     actions   = ["sns:Publish"]
-    resources = [aws_sns_topic.config.arn]
+    resources = [local.config_sns_topic_arn]
 
     principals {
       type        = "Service"
@@ -62,7 +66,7 @@ resource "aws_config_delivery_channel" "bucket" {
   name           = var.delivery_channel_name
   s3_bucket_name = var.s3_bucket_name
   s3_key_prefix  = var.s3_key_prefix
-  sns_topic_arn  = aws_sns_topic.config.arn
+  sns_topic_arn  = local.config_sns_topic_arn
 
   snapshot_delivery_properties {
     delivery_frequency = var.delivery_frequency

@@ -1,3 +1,7 @@
+locals {
+  cloudtrail_sns_topic_arn = var.cloudtrail_sns_topic_enabled ? aws_sns_topic.cloudtrail-sns-topic[0].arn : null
+}
+
 # --------------------------------------------------------------------------------------------------
 # CloudWatch Logs group to accept CloudTrail event stream.
 # --------------------------------------------------------------------------------------------------
@@ -253,7 +257,7 @@ data "aws_iam_policy_document" "cloudtrail-sns-policy" {
 
   statement {
     actions   = ["sns:Publish"]
-    resources = [aws_sns_topic.cloudtrail-sns-topic[0].arn]
+    resources = [local.cloudtrail_sns_topic_arn]
 
     principals {
       type        = "Service"
@@ -265,7 +269,7 @@ data "aws_iam_policy_document" "cloudtrail-sns-policy" {
 resource "aws_sns_topic_policy" "local-account-cloudtrail" {
   count = var.cloudtrail_sns_topic_enabled ? 1 : 0
 
-  arn    = aws_sns_topic.cloudtrail-sns-topic[0].arn
+  arn    = local.cloudtrail_sns_topic_arn
   policy = data.aws_iam_policy_document.cloudtrail-sns-policy[0].json
 }
 

@@ -1,10 +1,14 @@
+locals {
+  access_log_bucket_arn = aws_s3_bucket.access_log.arn
+}
+
 data "aws_iam_policy_document" "access_log_policy" {
   statement {
     actions = ["s3:*"]
     effect  = "Deny"
     resources = [
-      aws_s3_bucket.access_log.arn,
-      "${aws_s3_bucket.access_log.arn}/*"
+      local.access_log_bucket_arn,
+      "${local.access_log_bucket_arn}/*"
     ]
     condition {
       test     = "Bool"
