@@ -818,3 +818,19 @@ variable "analyzer_global_findings_region" {
   type        = string
   default     = null
 }
+
+# --------------------------------------------------------------------------------------------------
+# Variables for ssm-baseline module.
+# --------------------------------------------------------------------------------------------------
+
+variable "ssm_baseline_enabled" {
+  description = "Boolean whether ssm-baseline is enabled. Defaults to true."
+  type        = bool
+  default     = true
+}
+
+variable "ssm_documents_public_sharing_permission_disabled" {
+  description = "Whether AWS SSM should block public sharing of SSM documents in ALL regions. Defaults to true."
+  type        = bool
+  default     = true
+}
