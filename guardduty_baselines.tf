@@ -24,7 +24,6 @@ module "guardduty_baseline_ap-northeast-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -45,7 +44,6 @@ module "guardduty_baseline_ap-northeast-2" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -66,7 +64,6 @@ module "guardduty_baseline_ap-northeast-3" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -87,7 +84,6 @@ module "guardduty_baseline_ap-south-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -108,7 +104,6 @@ module "guardduty_baseline_ap-southeast-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -129,7 +124,6 @@ module "guardduty_baseline_ap-southeast-2" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -150,7 +144,6 @@ module "guardduty_baseline_ca-central-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -171,7 +164,6 @@ module "guardduty_baseline_eu-central-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -192,7 +184,6 @@ module "guardduty_baseline_eu-north-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -213,7 +204,6 @@ module "guardduty_baseline_eu-west-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -234,7 +224,6 @@ module "guardduty_baseline_eu-west-2" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -255,7 +244,6 @@ module "guardduty_baseline_eu-west-3" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -276,7 +264,6 @@ module "guardduty_baseline_sa-east-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -297,7 +284,6 @@ module "guardduty_baseline_us-east-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -318,7 +304,6 @@ module "guardduty_baseline_us-east-2" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -339,7 +324,6 @@ module "guardduty_baseline_us-west-1" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
@@ -360,7 +344,6 @@ module "guardduty_baseline_us-west-2" {
   member_accounts                = local.guardduty_member_accounts
   delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
   org_configuration              = var.guardduty_org_configuration
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
