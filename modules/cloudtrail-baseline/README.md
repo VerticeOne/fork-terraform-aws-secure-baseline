@@ -21,6 +21,7 @@ Enable CloudTrail in all regions and deliver events to CloudWatch Logs. CloudTra
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | The AWS Account ID number of the account. | `string` | yes |
+| <a name="input_organization_id"></a> [organization\_id](#input\_organization\_id) | The AWS Organizations ID. Used in KMS key policies to restrict access to organization members. | `string` | yes |
 | <a name="input_region"></a> [region](#input\_region) | The AWS region in which CloudTrail is set up. | `string` | yes |
 | <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | The name of the S3 bucket which will store configuration snapshots. | `string` | yes |
 | <a name="input_cloudtrail_depends_on"></a> [cloudtrail\_depends\_on](#input\_cloudtrail\_depends\_on) | External resources which should be set up before CloudTrail. | `list(any)` | no |

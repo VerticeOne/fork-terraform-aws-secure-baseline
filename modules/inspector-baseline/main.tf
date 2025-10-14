@@ -1,9 +1,7 @@
 data "aws_caller_identity" "current" {}
 
-data "aws_organizations_organization" "org" {}
-
 locals {
-  is_org_root_account         = data.aws_caller_identity.current.account_id == data.aws_organizations_organization.org.master_account_id
+  is_org_root_account         = var.organization_master_account_id != "" && data.aws_caller_identity.current.account_id == var.organization_master_account_id
   is_delegated_admin_account  = data.aws_caller_identity.current.account_id == var.delegated_admin_account_id
   is_inspector_master_account = var.master_account_id == "" || (var.master_account_id == var.delegated_admin_account_id && local.is_delegated_admin_account)
 

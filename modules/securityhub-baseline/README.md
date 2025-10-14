@@ -34,6 +34,7 @@
 | <a name="input_enable_product_arns"></a> [enable\_product\_arns](#input\_enable\_product\_arns) | List of Security Hub product ARNs, `<REGION>` will be replaced. See https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-partner-providers.html for list. | `list(string)` | no |
 | <a name="input_master_account_id"></a> [master\_account\_id](#input\_master\_account\_id) | AWS account ID for master account. | `string` | no |
 | <a name="input_member_accounts"></a> [member\_accounts](#input\_member\_accounts) | A list of IDs and emails of AWS accounts to be associated as member accounts. | <pre>list(object({<br>    account_id = string<br>    email      = string<br>  }))</pre> | no |
+| <a name="input_organization_master_account_id"></a> [organization\_master\_account\_id](#input\_organization\_master\_account\_id) | The AWS Organizations master account ID. Used to determine if the current account is the organization root. | `string` | no |
 | <a name="input_policy_assignments"></a> [policy\_assignments](#input\_policy\_assignments) | Assignments of Security Hub configuration policies to target accounts or OUs. Note: this only works if delegated admin account is used. | <pre>map(object({<br>    target_id   = string,<br>    policy_name = string,<br>  }))</pre> | no |
 
 ## Outputs

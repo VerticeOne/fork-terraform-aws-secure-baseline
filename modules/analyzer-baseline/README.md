@@ -27,6 +27,7 @@
 | <a name="input_delegated_admin_account_id"></a> [delegated\_admin\_account\_id](#input\_delegated\_admin\_account\_id) | AWS account ID within AWS Organization that should become delegated administrator of Access Analyzer. | `string` | no |
 | <a name="input_global_findings_region"></a> [global\_findings\_region](#input\_global\_findings\_region) | (Optional) Region for which AccessAnalyzer will report findings for global resources (like IAM roles). If specified, suppression rules will be created for all other regions EXCEPT this one to deduplicate the findings. Default value is `null`, so findings for global resources are reported in every region. | `string` | no |
 | <a name="input_is_organization"></a> [is\_organization](#input\_is\_organization) | The boolean flag whether this module is configured for the organization master account or the individual account. | `bool` | no |
+| <a name="input_organization_master_account_id"></a> [organization\_master\_account\_id](#input\_organization\_master\_account\_id) | The AWS Organizations master account ID. Used to determine if the current account is the organization root. | `string` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Specifies object tags key and value. This applies to all resources created by this module. | `map(string)` | no |
 
 ## Outputs
