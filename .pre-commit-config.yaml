@@ -7,6 +7,12 @@ repos:
         args:
           - --args=--config=.terraform-docs.yml
       - id: terraform_tflint
-        exclude: "test/"
+        name: TFLint (top-level)
+        exclude: "(examples|modules|test)/"
         args:
-          - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
+          - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl --var='master_account_id=123'
+      - id: terraform_tflint
+        name: TFLint (modules)
+        files: "modules/"
+        args:
+          - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl'
