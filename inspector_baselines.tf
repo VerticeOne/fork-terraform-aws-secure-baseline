@@ -21,7 +21,6 @@ module "inspector_baseline_ap-northeast-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -37,7 +36,6 @@ module "inspector_baseline_ap-northeast-2" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -53,7 +51,6 @@ module "inspector_baseline_ap-northeast-3" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -69,7 +66,6 @@ module "inspector_baseline_ap-south-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -85,7 +81,6 @@ module "inspector_baseline_ap-southeast-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -101,7 +96,6 @@ module "inspector_baseline_ap-southeast-2" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -117,7 +111,6 @@ module "inspector_baseline_ca-central-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -133,7 +126,6 @@ module "inspector_baseline_eu-central-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -149,7 +141,6 @@ module "inspector_baseline_eu-north-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -165,7 +156,6 @@ module "inspector_baseline_eu-west-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -181,7 +171,6 @@ module "inspector_baseline_eu-west-2" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -197,7 +186,6 @@ module "inspector_baseline_eu-west-3" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -213,7 +201,6 @@ module "inspector_baseline_sa-east-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -229,7 +216,6 @@ module "inspector_baseline_us-east-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -245,7 +231,6 @@ module "inspector_baseline_us-east-2" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -261,7 +246,6 @@ module "inspector_baseline_us-west-1" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
 
@@ -277,6 +261,5 @@ module "inspector_baseline_us-west-2" {
   master_account_id              = local.inspector_master_account_id
   member_accounts                = local.inspector_member_accounts
   delegated_admin_account_id     = var.inspector_delegated_admin_account_id
-  organization_id                = local.organization_id
   organization_master_account_id = local.organization_master_account_id
 }
