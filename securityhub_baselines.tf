@@ -24,7 +24,6 @@ module "securityhub_baseline_ap-northeast-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -46,7 +45,6 @@ module "securityhub_baseline_ap-northeast-2" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -68,7 +66,6 @@ module "securityhub_baseline_ap-northeast-3" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -90,7 +87,6 @@ module "securityhub_baseline_ap-south-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -112,7 +108,6 @@ module "securityhub_baseline_ap-southeast-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -134,7 +129,6 @@ module "securityhub_baseline_ap-southeast-2" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -156,7 +150,6 @@ module "securityhub_baseline_ca-central-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -178,7 +171,6 @@ module "securityhub_baseline_eu-central-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -200,7 +192,6 @@ module "securityhub_baseline_eu-north-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -222,7 +213,6 @@ module "securityhub_baseline_eu-west-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -244,7 +234,6 @@ module "securityhub_baseline_eu-west-2" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -266,7 +255,6 @@ module "securityhub_baseline_eu-west-3" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -288,7 +276,6 @@ module "securityhub_baseline_sa-east-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -310,7 +297,6 @@ module "securityhub_baseline_us-east-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -332,7 +318,6 @@ module "securityhub_baseline_us-east-2" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -354,7 +339,6 @@ module "securityhub_baseline_us-west-1" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
 
@@ -376,6 +360,5 @@ module "securityhub_baseline_us-west-2" {
   delegated_admin_account_id       = var.securityhub_delegated_admin_account_id
   configuration_policies           = var.securityhub_configuration_policies
   policy_assignments               = var.securityhub_policy_assignments
-  organization_id                  = local.organization_id
   organization_master_account_id   = local.organization_master_account_id
 }
