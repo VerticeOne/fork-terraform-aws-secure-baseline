@@ -26,11 +26,19 @@ terraform {
 
 data "aws_caller_identity" "current" {}
 
+data "aws_organizations_organization" "org" {
+  count = local.is_individual_account ? 0 : 1
+}
+
 locals {
   is_individual_account = var.account_type == "individual"
   is_master_account     = var.account_type == "master"
   is_cloudtrail_enabled = var.cloudtrail_baseline_enabled && (local.is_individual_account || local.is_master_account)
   is_organization_trail = local.is_master_account && !var.turn_off_organization_trail
+
+  # Organization values (read once and passed to all modules)
+  organization_id                = local.is_individual_account ? "" : data.aws_organizations_organization.org[0].id
+  organization_master_account_id = local.is_individual_account ? "" : data.aws_organizations_organization.org[0].master_account_id
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -86,6 +94,7 @@ module "cloudtrail_baseline" {
   dynamodb_event_logging_tables       = var.cloudtrail_dynamodb_event_logging_tables
   lambda_invocation_logging_lambdas   = var.cloudtrail_lambda_invocation_logging_lambdas
   is_organization_trail               = local.is_organization_trail
+  organization_id                     = local.organization_id
 
   tags = var.tags
 }

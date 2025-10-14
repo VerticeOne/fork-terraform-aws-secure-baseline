@@ -29,3 +29,9 @@ variable "delegated_admin_account_id" {
   type        = string
   default     = ""
 }
+
+variable "organization_master_account_id" {
+  description = "The AWS Organizations master account ID. Used to determine if the current account is the organization root."
+  type        = string
+  default     = ""
+}

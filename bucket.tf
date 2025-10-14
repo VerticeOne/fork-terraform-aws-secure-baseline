@@ -45,10 +45,6 @@ module "audit_log_bucket" {
   depends_on = [module.s3_baseline]
 }
 
-data "aws_organizations_organization" "org" {
-  count = local.is_individual_account ? 0 : 1
-}
-
 # Apply policies to enforce SSL connections.
 # https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-ssl-requests-only.html
 data "aws_iam_policy_document" "audit_log_base" {
@@ -99,7 +95,7 @@ data "aws_iam_policy_document" "audit_log_cloud_trail" {
     }
     resources = concat(
       ["${local.audit_log_cloudtrail_destination}/AWSLogs/${var.aws_account_id}/*"],
-      local.is_master_account ? ["${local.audit_log_cloudtrail_destination}/AWSLogs/${data.aws_organizations_organization.org[0].id}/*"] : []
+      local.is_master_account ? ["${local.audit_log_cloudtrail_destination}/AWSLogs/${local.organization_id}/*"] : []
     )
     condition {
       test     = "StringEquals"

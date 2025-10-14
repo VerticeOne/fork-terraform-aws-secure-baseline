@@ -117,6 +117,11 @@ variable "tags" {
   }
 }
 
+variable "organization_id" {
+  description = "The AWS Organizations ID. Used in KMS key policies to restrict access to organization members."
+  type        = string
+}
+
 # Use the hack to inject external dependencies from outsite the module.
 # See below for more detail.
 # https://stackoverflow.com/questions/58275233/terraform-depends-on-with-modules

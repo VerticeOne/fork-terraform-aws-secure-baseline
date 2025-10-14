@@ -62,8 +62,6 @@ resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
   policy = data.aws_iam_policy_document.cloudwatch_delivery_policy[0].json
 }
 
-data "aws_organizations_organization" "org" {}
-
 # KMS Key to encrypt CloudTrail events.
 # The policy was derived from the default key policy described in AWS CloudTrail User Guide.
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/default-cmk-policy.html
@@ -195,7 +193,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     condition {
       test     = "StringEquals"
       variable = "aws:PrincipalOrgID"
-      values   = [data.aws_organizations_organization.org.id]
+      values   = [var.organization_id]
     }
     condition {
       test     = "StringLike"

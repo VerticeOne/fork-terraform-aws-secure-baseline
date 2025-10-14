@@ -17,13 +17,14 @@ module "guardduty_baseline_ap-northeast-1" {
     aws = aws.ap-northeast-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -36,13 +37,14 @@ module "guardduty_baseline_ap-northeast-2" {
     aws = aws.ap-northeast-2
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -55,13 +57,14 @@ module "guardduty_baseline_ap-northeast-3" {
     aws = aws.ap-northeast-3
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -74,13 +77,14 @@ module "guardduty_baseline_ap-south-1" {
     aws = aws.ap-south-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -93,13 +97,14 @@ module "guardduty_baseline_ap-southeast-1" {
     aws = aws.ap-southeast-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -111,14 +116,15 @@ module "guardduty_baseline_ap-southeast-2" {
     aws = aws.ap-southeast-2
   }
 
-  count                        = contains(var.target_regions, "ap-southeast-2") && var.guardduty_enabled ? 1 : 0
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  count                          = contains(var.target_regions, "ap-southeast-2") && var.guardduty_enabled ? 1 : 0
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -131,13 +137,14 @@ module "guardduty_baseline_ca-central-1" {
     aws = aws.ca-central-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -150,13 +157,14 @@ module "guardduty_baseline_eu-central-1" {
     aws = aws.eu-central-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -169,13 +177,14 @@ module "guardduty_baseline_eu-north-1" {
     aws = aws.eu-north-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -188,13 +197,14 @@ module "guardduty_baseline_eu-west-1" {
     aws = aws.eu-west-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -207,13 +217,14 @@ module "guardduty_baseline_eu-west-2" {
     aws = aws.eu-west-2
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -226,13 +237,14 @@ module "guardduty_baseline_eu-west-3" {
     aws = aws.eu-west-3
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -245,13 +257,14 @@ module "guardduty_baseline_sa-east-1" {
     aws = aws.sa-east-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -264,13 +277,14 @@ module "guardduty_baseline_us-east-1" {
     aws = aws.us-east-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -283,13 +297,14 @@ module "guardduty_baseline_us-east-2" {
     aws = aws.us-east-2
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -302,13 +317,14 @@ module "guardduty_baseline_us-west-1" {
     aws = aws.us-west-1
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
@@ -321,13 +337,14 @@ module "guardduty_baseline_us-west-2" {
     aws = aws.us-west-2
   }
 
-  disable_email_notification   = var.guardduty_disable_email_notification
-  finding_publishing_frequency = var.guardduty_finding_publishing_frequency
-  invitation_message           = var.guardduty_invitation_message
-  master_account_id            = local.guardduty_master_account_id
-  member_accounts              = local.guardduty_member_accounts
-  delegated_admin_account_id   = var.guardduty_delegated_admin_account_id
-  org_configuration            = var.guardduty_org_configuration
+  disable_email_notification     = var.guardduty_disable_email_notification
+  finding_publishing_frequency   = var.guardduty_finding_publishing_frequency
+  invitation_message             = var.guardduty_invitation_message
+  master_account_id              = local.guardduty_master_account_id
+  member_accounts                = local.guardduty_member_accounts
+  delegated_admin_account_id     = var.guardduty_delegated_admin_account_id
+  org_configuration              = var.guardduty_org_configuration
+  organization_master_account_id = local.organization_master_account_id
 
   tags = var.tags
 }
