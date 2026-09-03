@@ -834,3 +834,15 @@ variable "ssm_documents_public_sharing_permission_disabled" {
   type        = bool
   default     = true
 }
+
+variable "organization_id" {
+  type        = string
+  default     = null
+  description = "AWS Organizations ID (o-xxxx) this account belongs to. When null (and the account is not an individual account) it is looked up via a live aws_organizations_organization data source. Supply it together with organization_master_account_id to skip that global, throttled API call."
+}
+
+variable "organization_master_account_id" {
+  type        = string
+  default     = null
+  description = "Account ID of the organization's management account. When null (and the account is not an individual account) it is looked up via a live aws_organizations_organization data source. Supply it together with organization_id to skip that global, throttled API call."
+}
