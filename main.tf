@@ -26,8 +26,10 @@ terraform {
 
 data "aws_caller_identity" "current" {}
 
+# Reading the organization is a global, heavily throttled API call. Callers that already know
+# these values pass them in so this lookup is skipped entirely; see ASH-2370.
 data "aws_organizations_organization" "org" {
-  count = local.is_individual_account ? 0 : 1
+  count = local.is_individual_account || local.organization_supplied ? 0 : 1
 }
 
 locals {
@@ -36,9 +38,11 @@ locals {
   is_cloudtrail_enabled = var.cloudtrail_baseline_enabled && (local.is_individual_account || local.is_master_account)
   is_organization_trail = local.is_master_account && !var.turn_off_organization_trail
 
+  organization_supplied = var.organization_id != null && var.organization_master_account_id != null
+
   # Organization values (read once and passed to all modules)
-  organization_id                = local.is_individual_account ? "" : data.aws_organizations_organization.org[0].id
-  organization_master_account_id = local.is_individual_account ? "" : data.aws_organizations_organization.org[0].master_account_id
+  organization_id                = local.is_individual_account ? "" : coalesce(var.organization_id, try(data.aws_organizations_organization.org[0].id, null))
+  organization_master_account_id = local.is_individual_account ? "" : coalesce(var.organization_master_account_id, try(data.aws_organizations_organization.org[0].master_account_id, null))
 }
 
 # --------------------------------------------------------------------------------------------------
