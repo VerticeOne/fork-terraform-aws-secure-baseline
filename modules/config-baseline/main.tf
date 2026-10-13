@@ -54,6 +54,15 @@ resource "aws_config_configuration_recorder" "recorder" {
 
   recording_mode {
     recording_frequency = var.daily_recording ? "DAILY" : "CONTINUOUS"
+
+    dynamic "recording_mode_override" {
+      for_each = var.recording_mode_overrides
+      content {
+        description         = recording_mode_override.value.description
+        recording_frequency = recording_mode_override.value.recording_frequency
+        resource_types      = recording_mode_override.value.resource_types
+      }
+    }
   }
 }
 

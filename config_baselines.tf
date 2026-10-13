@@ -117,6 +117,7 @@ module "config_baseline_ap-northeast-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "ap-northeast-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "ap-northeast-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -141,6 +142,7 @@ module "config_baseline_ap-northeast-2" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-2"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "ap-northeast-2")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "ap-northeast-2" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -165,6 +167,7 @@ module "config_baseline_ap-northeast-3" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-northeast-3"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "ap-northeast-3")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "ap-northeast-3" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -189,6 +192,7 @@ module "config_baseline_ap-south-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-south-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "ap-south-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "ap-south-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -213,6 +217,7 @@ module "config_baseline_ap-southeast-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "ap-southeast-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "ap-southeast-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -237,6 +242,7 @@ module "config_baseline_ap-southeast-2" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ap-southeast-2"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "ap-southeast-2")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "ap-southeast-2" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -261,6 +267,7 @@ module "config_baseline_ca-central-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "ca-central-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "ca-central-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "ca-central-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -285,6 +292,7 @@ module "config_baseline_eu-central-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-central-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "eu-central-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "eu-central-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -309,6 +317,7 @@ module "config_baseline_eu-north-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-north-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "eu-north-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "eu-north-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -333,6 +342,7 @@ module "config_baseline_eu-west-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "eu-west-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "eu-west-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -357,6 +367,7 @@ module "config_baseline_eu-west-2" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-2"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "eu-west-2")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "eu-west-2" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -381,6 +392,7 @@ module "config_baseline_eu-west-3" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "eu-west-3"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "eu-west-3")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "eu-west-3" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -405,6 +417,7 @@ module "config_baseline_sa-east-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "sa-east-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "sa-east-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "sa-east-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -429,6 +442,7 @@ module "config_baseline_us-east-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "us-east-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "us-east-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -453,6 +467,7 @@ module "config_baseline_us-east-2" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-east-2"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "us-east-2")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "us-east-2" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -477,6 +492,7 @@ module "config_baseline_us-west-1" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-1"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "us-west-1")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "us-west-1" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
@@ -501,6 +517,7 @@ module "config_baseline_us-west-2" {
   include_global_resource_types = var.config_global_resources_all_regions ? true : var.region == "us-west-2"
   config_retention_days         = var.config_retention_days
   daily_recording               = contains(var.config_daily_recording_regions, "us-west-2")
+  recording_mode_overrides      = var.config_recording_mode_overrides
   limit_resource_types          = setsubtract(var.config_limit_resource_types, var.region == "us-west-2" ? [] : var.config_non_main_exclude_resource_types)
 
   tags = var.tags
