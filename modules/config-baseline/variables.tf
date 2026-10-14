@@ -56,6 +56,16 @@ variable "daily_recording" {
   default     = false
 }
 
+variable "recording_mode_overrides" {
+  description = "Resource types to record at a different frequency than the recorder default. AWS Config accepts one override."
+  type = list(object({
+    description         = string
+    recording_frequency = string
+    resource_types      = list(string)
+  }))
+  default = []
+}
+
 variable "limit_resource_types" {
   description = "Only record changes for listed resource types. Records all if empty."
   type        = list(string)

@@ -307,6 +307,16 @@ variable "config_daily_recording_regions" {
   default     = []
 }
 
+variable "config_recording_mode_overrides" {
+  description = "Resource types to record at a different frequency than the recorder default, in every region. AWS Config accepts one override."
+  type = list(object({
+    description         = string
+    recording_frequency = string
+    resource_types      = list(string)
+  }))
+  default = []
+}
+
 variable "config_sns_topic_name" {
   description = "The name of the SNS Topic to be used to notify configuration changes."
   type        = string
