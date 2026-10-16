@@ -84,6 +84,16 @@ data "aws_iam_policy_document" "audit_log_cloud_trail" {
       identifiers = ["cloudtrail.amazonaws.com"]
     }
     resources = [module.audit_log_bucket[0].this_bucket.arn]
+
+    dynamic "condition" {
+      for_each = local.is_master_account ? [local.organization_id] : []
+
+      content {
+        test     = "StringEquals"
+        variable = "aws:SourceOrgID"
+        values   = [condition.value]
+      }
+    }
   }
 
   statement {
@@ -101,6 +111,16 @@ data "aws_iam_policy_document" "audit_log_cloud_trail" {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
       values   = ["bucket-owner-full-control"]
+    }
+
+    dynamic "condition" {
+      for_each = local.is_master_account ? [local.organization_id] : []
+
+      content {
+        test     = "StringEquals"
+        variable = "aws:SourceOrgID"
+        values   = [condition.value]
+      }
     }
   }
 }
