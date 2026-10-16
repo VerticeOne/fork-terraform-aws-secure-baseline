@@ -283,14 +283,21 @@ data "aws_iam_policy_document" "audit_log_flow_logs" {
       type        = "Service"
       identifiers = ["delivery.logs.amazonaws.com"]
     }
-    resources = concat(
-      ["${local.audit_log_flow_logs_destination}/AWSLogs/${var.aws_account_id}/*"],
-      local.is_master_account ? [for account in var.member_accounts : "${local.audit_log_flow_logs_destination}/AWSLogs/${account.account_id}/*"] : []
-    )
+    resources = local.is_master_account ? ["${local.audit_log_flow_logs_destination}/AWSLogs/*"] : ["${local.audit_log_flow_logs_destination}/AWSLogs/${var.aws_account_id}/*"]
     condition {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
       values   = ["bucket-owner-full-control"]
+    }
+
+    dynamic "condition" {
+      for_each = local.is_master_account ? [local.organization_id] : []
+
+      content {
+        test     = "StringEquals"
+        variable = "aws:SourceOrgID"
+        values   = [condition.value]
+      }
     }
   }
 }
