@@ -84,6 +84,16 @@ data "aws_iam_policy_document" "audit_log_cloud_trail" {
       identifiers = ["cloudtrail.amazonaws.com"]
     }
     resources = [module.audit_log_bucket[0].this_bucket.arn]
+
+    dynamic "condition" {
+      for_each = local.is_master_account ? [local.organization_id] : []
+
+      content {
+        test     = "StringEquals"
+        variable = "aws:SourceOrgID"
+        values   = [condition.value]
+      }
+    }
   }
 
   statement {
@@ -101,6 +111,16 @@ data "aws_iam_policy_document" "audit_log_cloud_trail" {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
       values   = ["bucket-owner-full-control"]
+    }
+
+    dynamic "condition" {
+      for_each = local.is_master_account ? [local.organization_id] : []
+
+      content {
+        test     = "StringEquals"
+        variable = "aws:SourceOrgID"
+        values   = [condition.value]
+      }
     }
   }
 }
@@ -139,60 +159,100 @@ data "aws_iam_policy_document" "audit_log_config" {
       type        = "Service"
       identifiers = ["config.amazonaws.com"]
     }
-    resources = concat(
-      ["${local.audit_log_config_destination}/AWSLogs/${var.aws_account_id}/Config/*"],
-      local.is_master_account ? [for account in var.member_accounts : "${local.audit_log_config_destination}/AWSLogs/${account.account_id}/Config/*"] : []
-    )
+    # Org-scoped instead of enumerating member accounts, so adding an account does not change the policy.
+    resources = local.is_master_account ? ["${local.audit_log_config_destination}/AWSLogs/*/Config/*"] : ["${local.audit_log_config_destination}/AWSLogs/${var.aws_account_id}/Config/*"]
     condition {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
       values   = ["bucket-owner-full-control"]
     }
+
+    dynamic "condition" {
+      for_each = local.is_master_account ? [local.organization_id] : []
+
+      content {
+        test     = "StringEquals"
+        variable = "aws:SourceOrgID"
+        values   = [condition.value]
+      }
+    }
   }
 
+  # Member accounts deliver through their Config recorder role. Scoped by org and role name, and each
+  # account can only write under its own prefix, so adding an account does not change the policy.
   dynamic "statement" {
-    for_each = local.is_master_account && length(var.member_accounts) > 0 ? [var.member_accounts] : []
+    for_each = local.is_master_account ? [1] : []
 
     content {
       sid = "AWSConfigBucketPermissionsCheckForMemberAccounts"
       principals {
         type        = "AWS"
-        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+        identifiers = ["*"]
       }
       actions   = ["s3:GetBucketAcl"]
       resources = [module.audit_log_bucket[0].this_bucket.arn]
+      condition {
+        test     = "StringEquals"
+        variable = "aws:PrincipalOrgID"
+        values   = [local.organization_id]
+      }
+      condition {
+        test     = "ArnLike"
+        variable = "aws:PrincipalArn"
+        values   = ["arn:aws:iam::*:role/${var.config_iam_role_name}"]
+      }
     }
   }
 
   dynamic "statement" {
-    for_each = local.is_master_account && length(var.member_accounts) > 0 ? [var.member_accounts] : []
+    for_each = local.is_master_account ? [1] : []
 
     content {
       sid = "AWSConfigBucketExistenceCheckForMemberAccounts"
       principals {
         type        = "AWS"
-        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+        identifiers = ["*"]
       }
       actions   = ["s3:ListBucket", "s3:GetBucketLocation"]
       resources = [module.audit_log_bucket[0].this_bucket.arn]
+      condition {
+        test     = "StringEquals"
+        variable = "aws:PrincipalOrgID"
+        values   = [local.organization_id]
+      }
+      condition {
+        test     = "ArnLike"
+        variable = "aws:PrincipalArn"
+        values   = ["arn:aws:iam::*:role/${var.config_iam_role_name}"]
+      }
     }
   }
 
   dynamic "statement" {
-    for_each = local.is_master_account && length(var.member_accounts) > 0 ? [var.member_accounts] : []
+    for_each = local.is_master_account ? [1] : []
 
     content {
       sid = "AWSConfigBucketDeliveryForMemberAccounts"
       principals {
         type        = "AWS"
-        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+        identifiers = ["*"]
       }
       actions   = ["s3:PutObject"]
-      resources = [for account in statement.value : "${local.audit_log_config_destination}/AWSLogs/${account.account_id}/Config/*"]
+      resources = ["${local.audit_log_config_destination}/AWSLogs/$${aws:PrincipalAccount}/Config/*"]
       condition {
         test     = "StringEquals"
         variable = "s3:x-amz-acl"
         values   = ["bucket-owner-full-control"]
+      }
+      condition {
+        test     = "StringEquals"
+        variable = "aws:PrincipalOrgID"
+        values   = [local.organization_id]
+      }
+      condition {
+        test     = "ArnLike"
+        variable = "aws:PrincipalArn"
+        values   = ["arn:aws:iam::*:role/${var.config_iam_role_name}"]
       }
     }
   }
@@ -223,14 +283,21 @@ data "aws_iam_policy_document" "audit_log_flow_logs" {
       type        = "Service"
       identifiers = ["delivery.logs.amazonaws.com"]
     }
-    resources = concat(
-      ["${local.audit_log_flow_logs_destination}/AWSLogs/${var.aws_account_id}/*"],
-      local.is_master_account ? [for account in var.member_accounts : "${local.audit_log_flow_logs_destination}/AWSLogs/${account.account_id}/*"] : []
-    )
+    resources = ["${local.audit_log_flow_logs_destination}/AWSLogs/$${aws:SourceAccount}/*"]
     condition {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
       values   = ["bucket-owner-full-control"]
+    }
+
+    dynamic "condition" {
+      for_each = local.is_master_account ? [local.organization_id] : []
+
+      content {
+        test     = "StringEquals"
+        variable = "aws:SourceOrgID"
+        values   = [condition.value]
+      }
     }
   }
 }
