@@ -283,7 +283,7 @@ data "aws_iam_policy_document" "audit_log_flow_logs" {
       type        = "Service"
       identifiers = ["delivery.logs.amazonaws.com"]
     }
-    resources = local.is_master_account ? ["${local.audit_log_flow_logs_destination}/AWSLogs/$${aws:SourceAccount}/*"] : ["${local.audit_log_flow_logs_destination}/AWSLogs/${var.aws_account_id}/*"]
+    resources = ["${local.audit_log_flow_logs_destination}/AWSLogs/$${aws:SourceAccount}/*"]
     condition {
       test     = "StringEquals"
       variable = "s3:x-amz-acl"
